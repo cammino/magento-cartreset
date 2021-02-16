@@ -14,6 +14,9 @@ class Cammino_Cartreset_Model_Observer extends Mage_Checkout_Block_Onepage_Abstr
     
     // Observer
 	public function loadCustomerQuote() {
+        if (Mage::getStoreConfig("themeconfig/themeconfig_cart_reset/active")) {
+            return true;
+        }
         $customerQuote = Mage::getModel('sales/quote') 
                         ->setStoreId(Mage::app()->getStore()->getId())
                         ->loadByCustomer(Mage::getSingleton('customer/session')->getCustomerId() ); 
